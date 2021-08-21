@@ -6,15 +6,15 @@ from instaloader import Instaloader, Profile
 import time
 
 
-'''Coded by Anish Gowda 😃😃😃😃'''
+'''Instagram DP Downloader😃😃😃'''
 L = Instaloader()
 TOKEN = os.getenv("BOT_TOKEN")
 APP_NAME = os.getenv("APP_NAME")
 TELEGRAM_USERNAME = os.getenv("TELEGRAM_USERNAME")
 
-welcome_msg = '''<b>Welcome To the Bot</b>🖐🖐
- <i>Send me anyones instagram username to get their DP</i>
- ex : <b>virat.kohli</b> , <b>thenameisyash</b> etc'''
+welcome_msg = '''<b>Welcome To InnovaGe Instagram DP Downloader Bot</b>🖐🖐
+ \nSend me anyones instagram username to get their DP
+ \nexample : <b>mohanlal</b> , <b>mammootty</b> etc'''
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 
 def acc_type(val):
     if(val):
-        return "🔒Private🔒"
+        return "🚫Private"
     else:
-        return "🔓Public🔓"
+        return "🌍Public"
 
 # Start the Bot
 
@@ -38,7 +38,7 @@ def start(update, context):
 
 
 def help_msg(update, context):
-    update.message.reply_text("Nothing to help ,This is way to simple 😂😂")
+    update.message.reply_text("Just send me anyones instagram username without @ symbol and wait a minute")
 
 
 def contact(update, context):
@@ -47,7 +47,7 @@ def contact(update, context):
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text('Contact The Maker:', reply_markup=reply_markup)
+    update.message.reply_text('Join Update Channel', reply_markup=reply_markup)
 
 # get the username and send the DP
 
@@ -58,15 +58,15 @@ def username(update, context):
     chat_id = update.message.chat_id
     try:
         user = Profile.from_username(L.context, query)
-        caption_msg = f'''📛*Name*📛: {user.full_name} \n😁*Followers*😁: {user.followers} \n🤩*Following*🤩: {user.followees}\
-         \n🧐*Account Type*🧐: {acc_type(user.is_private)} \n\nThank You For Using The bot 😀😀'''
+        caption_msg = f'''*Name*: {user.full_name} \n*Followers*: {user.followers} \n*Following*: {user.followees}\
+         \n*Account Type*: {acc_type(user.is_private)} \n\nThank You For using InnovaGe bot 😀.For More Details & Bots Join @InnovaGe'''
         context.bot.send_photo(
             chat_id=chat_id, photo=user.profile_pic_url,
             caption=caption_msg, parse_mode='MARKDOWN')
-        msg.edit_text("finished.")
+        msg.edit_text("wait a minute")
         time.sleep(5)
     except Exception:
-        msg.edit_text("Try again 😕😕 Check the username correctly")
+        msg.edit_text("Oops!😕 Check the username correctly and resend now")
 
 
 def error(update, context):
