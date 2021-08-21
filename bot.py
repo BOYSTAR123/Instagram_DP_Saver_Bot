@@ -12,7 +12,7 @@ TOKEN = os.getenv("BOT_TOKEN")
 APP_NAME = os.getenv("APP_NAME")
 TELEGRAM_USERNAME = os.getenv("TELEGRAM_USERNAME")
 
-welcome_msg = '''<b>Welcome To InnovaGe Instagram DP Downloader Bot</b>🖐🖐
+welcome_msg = '''<b>Welcome To 𝗜𝗻𝗻𝗼𝘃𝗮𝗚𝗲 Instagram DP Downloader Bot </b>❤️
  \nSend me anyones instagram username to get their DP
  \nexample : <b>mohanlal</b> , <b>mammootty</b> etc'''
 
@@ -43,11 +43,11 @@ def help_msg(update, context):
 
 def contact(update, context):
     keyboard = [[InlineKeyboardButton(
-        "Contact", url=f"telegram.me/{TELEGRAM_USERNAME}")], ]
+        "Join", url=f"telegram.me/{TELEGRAM_USERNAME}")], ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    update.message.reply_text('Join Update Channel', reply_markup=reply_markup)
+    update.message.reply_text('Join 𝗜𝗻𝗻𝗼𝘃𝗮𝗚𝗲 Channel', reply_markup=reply_markup)
 
 # get the username and send the DP
 
@@ -59,11 +59,11 @@ def username(update, context):
     try:
         user = Profile.from_username(L.context, query)
         caption_msg = f'''*Name*: {user.full_name} \n*Followers*: {user.followers} \n*Following*: {user.followees}\
-         \n*Account Type*: {acc_type(user.is_private)} \n\nThank You For using InnovaGe bot 😀.For More Details & Bots Join @InnovaGe'''
+         \n*Account Type*: {acc_type(user.is_private)} \n\nThank You For using 𝗜𝗻𝗻𝗼𝘃𝗮𝗚𝗲 bot 😀 \nFor More Details & Bots Join @InnovaGe'''
         context.bot.send_photo(
             chat_id=chat_id, photo=user.profile_pic_url,
             caption=caption_msg, parse_mode='MARKDOWN')
-        msg.edit_text("wait a minute")
+        msg.edit_text("Here Is Your DP 👇")
         time.sleep(5)
     except Exception:
         msg.edit_text("Oops!😕 Check the username correctly and resend now")
